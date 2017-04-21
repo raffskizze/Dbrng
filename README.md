@@ -8,6 +8,8 @@ POR HACER -- TO DO:
 Añadir rutas.
 Uploader para volcados SQL.
 
+DEMO:http://www.raffskizze.com/dbrng/ Only UPDATE,SELECT,DELETE & INSERTS allowed.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## Development server
