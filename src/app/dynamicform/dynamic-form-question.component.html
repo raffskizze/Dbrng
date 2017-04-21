@@ -1,0 +1,29 @@
+<div [formGroup]="form" class="form-group">
+  <label *ngIf="question.controlType != 'hidden'" [attr.for]="question.key">{{question.label}}</label>
+
+  <div [ngSwitch]="question.controlType">
+
+    <input class="form-control" *ngSwitchCase="'text'" [formControlName]="question.key"
+            [id]="question.key" [type]="question.type">
+
+    <select  class="form-control" [id]="question.key" *ngSwitchCase="'select'" [formControlName]="question.key">
+      <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+    </select>
+
+    <textarea  class="form-control" [id]="question.key" *ngSwitchCase="'textArea'" [formControlName]="question.key"> 
+      {{question.value}}
+    </textarea>
+
+    <input class="form-control" *ngSwitchCase="'hidden'" [formControlName]="question.key"
+            [id]="question.key" [type]="question.type">
+  </div> 
+
+  <div class="alert alert-danger" *ngIf="!isValid">{{question.label}} is required</div>
+</div>
+
+
+<!-- 
+Copyright 2017 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->

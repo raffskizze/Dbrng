@@ -7,8 +7,17 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<style>
+		.blink {
+		  animation: blinker 1s linear infinite;
+		} 
+		@keyframes blinker {  
+		  50% { opacity: 0; }
+		}
+	</style> 
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <dbrng><b class="blink">Loading...</b></dbrng>
 </body>
 </html>

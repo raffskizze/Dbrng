@@ -1,0 +1,31 @@
+ <!-- Modal para editar los registros -->
+<ng-template #rowed let-c="close" let-d="dismiss">
+    
+      <!-- Modal content--> 
+        <div class="modal-header">
+          <h4 *ngIf="edit" class="modal-title">Edit ROW <span class="label label-primary" id="editwhere">{{fieldedit}} = {{valeditfield}}</span></h4>
+		      <h4 *ngIf="!edit" class="modal-title">Insert ROW </h4>
+
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          
+        </div>
+        <form (ngSubmit)="sendForm()" [formGroup]="form"> 
+            <div class="modal-body"> 
+                <div *ngFor="let question of questions" class="form-row">
+                  <df-question [question]="question" [form]="form"></df-question>
+                </div>
+
+                <div *ngIf="payLoad" class="form-row">
+                  <strong>Saved the following values</strong><br>{{payLoad}}
+                </div>
+            </div>
+            <div class="modal-footer"> 
+              <button type="submit"  class="btn btn-primary"   [disabled]="!form.valid">Save</button>
+              <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+            </div>
+        </form> 
+       
+</ng-template>   
+ 

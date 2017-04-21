@@ -1,3 +1,127 @@
-<h1>
-  {{title}}
-</h1>
+
+<div class="container" id="dbrhtml">
+<div class="container">
+  <h1>DBRNG Mysql {{work}}</h1>
+  <p>Simply a Mysql client made of php/bootstrap/angular2+ {{tables2}}</p> 
+	<div class="row">
+		<div class="col-sm-9">
+			<form>
+				<div class="form-group">
+					<textarea placeholder="SQL here..." class="form-control" rows="10" name="textSQL" [(ngModel)]="SQL">{{SQL}}</textarea>
+				</div>
+				<div class="form-group">
+					<button type="button" class="btn btn-primary btn-block" (click)="generateQuery()">Send SQL</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-sm-3">
+			<form> 
+				<div class="form-group">
+					    <label for="showrows">Show rows:</label>
+						  <select class="form-control" placeholder="all" [(ngModel)]="showselect" name="showrows" id="showrows"  #show="ngModel" (ngModelChange)="changeshow($event)">  
+								<option [ngValue]="all">all</option>
+								<option *ngFor="let show of SHOWS" [value]="show">{{show}}</option>
+						  </select>
+				</div>
+				<div class="form-group">
+				<div class="btn-group btn-group-justified">
+					<div class="btn-group">
+						<div ngbDropdown class="d-inline-block">
+						<button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>Querys</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<button class="dropdown-item" (click)="sqltext('sel')">SELECT</button>
+								<button class="dropdown-item" (click)="sqltext('del')">DELETE</button>
+								<button class="dropdown-item" (click)="sqltext('upd')">UPDATE</button>
+								<button class="dropdown-item" (click)="sqltext('inner')">INNER JOIN</button>
+							</div>
+						</div>
+					</div> 
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="btn-group btn-group-justified">
+					<div class="btn-group">
+						<div ngbDropdown class="d-inline-block">
+						<button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>Tables</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<button class="dropdown-item" *ngFor="let tbl of tables;" (click)="sqlselect(tbl)">{{tbl}}</button> 
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="btn-group btn-group-justified">
+					<div class="btn-group">
+						<div ngbDropdown class="d-inline-block">
+						<button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>Insert</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<button class="dropdown-item" *ngFor="let tbl of tables;" (click)="onClickinsert(tbl)">{{tbl}}</button> 
+							</div>
+						</div>
+					</div> 
+				</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="container" id="loading" [hidden]="!loader"> 
+  <div class="well well-lg blink">Loading...</div>
+</div>
+<div class="container">
+<div class="alert alert-success" id="alertsuccess" [hidden]="!alertsuccess">
+  <a href="#" class="close closealert" (click)="alertsuccess = !alertsuccess">&times;</a>
+  <p>
+  <strong>Success!</strong> {{infomsg}}
+  </p>
+</div>
+<div class="alert alert-danger" id="alertdanger" [hidden]="!alertdanger">
+  <a href="#" class="close closealert" (click)="alertdanger = !alertdanger" >&times;</a>
+  <p>
+  <strong>Error!</strong> {{infomsg}}
+  </p>
+</div>
+<div class="alert alert-info" id="alertinfo" [hidden]="!alertinfo">
+  <a href="#" class="close closealert" (click)="alertinfo = !alertinfo">&times;</a>
+  <p>
+  <strong>Info!</strong> {{infomsg}}
+  </p>
+</div>
+  <h2>Query results...</h2>
+  <div class="table-responsive">
+  <table class="table table-hover table-striped" id="tabledata">
+	<thead>
+				<tr id="headnames" *ngIf="response && response.data">	  
+				 <ng-template ngFor let-row [ngForOf]="response.data[0]">
+							<ng-template ngFor let-val [ngForOf]="row | keys">           
+								<th>{{val.key}}</th>
+							</ng-template>
+				</ng-template>
+				</tr>
+    </thead> 
+       <tbody *ngIf="response && response.data">	  
+				 <tr *ngFor="let row of response.data; let i = index" #me [attr.data-irow]="i" [attr.id]="i+'row'" (click)="onClickrow(me.getAttribute('data-irow'))">
+					 <ng-template [ngIf]="showrows(i)">
+						<ng-template ngFor let-entry [ngForOf]="row">
+							<ng-template ngFor let-val [ngForOf]="entry | keys">           
+								<td>{{val.value}}</td>
+							</ng-template>
+						</ng-template>
+						</ng-template>
+				</tr>
+			</tbody> 
+  </table>
+  </div>
+</div> 
+<dynamic-form [questions]="questions" (send)="receivedata($event)"></dynamic-form>
+
+<!-- DEBUG -->
+	<div *ngIf="debug" class="pre-scrollable mb-4"> 
+  	debug SQL:<br>{{SQL}}<hr>
+		debug SHOW:<br>{{diagnosticshow}}<hr>
+		<div *ngIf="response" >
+		diagnostic response:<br>{{diagnostic}}<hr>
+		</div> 
+	</div>
