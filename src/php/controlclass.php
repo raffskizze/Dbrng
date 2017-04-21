@@ -69,8 +69,10 @@ class Control
 	{
 		$con = new Dbrclass;
 			//sacamos la info de la tabla y sus registros 
-			$con->sqlquery("SHOW COLUMNS FROM `".$table."`;");
+			if($con->sqlquery("SHOW COLUMNS FROM `".$table."`;"))	 
 			$campostabla =  $con->getallarray();  
+			else
+			$campostabla = []; 
 		
 		return $campostabla;
 	}
