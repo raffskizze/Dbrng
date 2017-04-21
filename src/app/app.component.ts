@@ -15,6 +15,7 @@ import { InputBase,InputArea,InputSelect,InputText,InputHidden,Nosupport }      
   
 })
 export class AppComponent {
+  version:number = 0.1;
   @ViewChild(DynamicFormComponent) dyform:DynamicFormComponent;
   questions: InputBase<any>[] = [];
   work = 'no works!';
@@ -33,6 +34,7 @@ export class AppComponent {
   fieldedit:any;
   valeditfield:any;
   edit:boolean = true;
+
 
   //clase que se ejecuta al inicio del componente
   constructor(private QS:QueryService) {   
