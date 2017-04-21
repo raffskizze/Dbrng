@@ -4,8 +4,9 @@ Proyecto creado para testear y aprender Angular 2, Bootstrap v4 y ng-bootstrap.
 --
 For learning purposes, Angular 2 + Bootstrap 4
 
-TO DO:
-
+POR HACER -- TO DO:
+Añadir rutas.
+Uploader para volcados SQL.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
