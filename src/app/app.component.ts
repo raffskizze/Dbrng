@@ -43,6 +43,8 @@ export class AppComponent {
         tables => {this.tables = tables;this.work = 'works!';this.loader = false;},
         error => {this.alertdanger = true;this.loader = true; this.infomsg = "No se han devuelto las tablas de la BD"  }
       );
+
+      console.log("V: "+this.version);//mostramos la version del proyecto
  
    }
 
