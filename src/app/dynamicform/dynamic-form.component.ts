@@ -57,9 +57,9 @@ export class DynamicFormComponent implements OnChanges{
     this.modalref = this.modalService.open(content);
 
     this.modalref.result.then((result) => {
-      console.log(`Closed with: ${result}`);
+      //console.log(`Closed with: ${result}`);
     }, (reason) => {
-      console.log(`Dismissed ${this.getDismissReason(reason)}`);
+      //console.log(`Dismissed ${this.getDismissReason(reason)}`);
     });
   }  
    

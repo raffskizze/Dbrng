@@ -119,7 +119,7 @@ export class AppComponent {
   //para cambiar show
    changeshow(val) {  
      this.show = val; 
-     console.log(" >"+this.show +" type:"+ typeof this.show );
+      //console.log(" >"+this.show +" type:"+ typeof this.show );
   }
 
     //para mostrar las filas, pasamos el i index del array data
@@ -201,7 +201,7 @@ export class AppComponent {
    //obtenemos los datos de la fila a editar para pasarselo al formulario dinamico
    getQuestions(datarow) {
 
-    console.log("Formamos el registro a editar:"+this.fieldedit+" valorcampo:"+this.valeditfield);
+    //console.log("Formamos el registro a editar:"+this.fieldedit+" valorcampo:"+this.valeditfield);
     this.questions = []; //vaciamos questions
 
             //le añadimos el input hidden con el nombre de la tabla
@@ -279,7 +279,7 @@ export class AppComponent {
   //obtenemos los datos de la tabla para mostar el formulario dinamico a insertar
    getQuestionsinsert(table) {
 
-    console.log("Formamos el registro a insertar para la tabla: "+table);
+    //console.log("Formamos el registro a insertar para la tabla: "+table);
     this.questions = []; //vaciamos questions
     let req = false;
      
